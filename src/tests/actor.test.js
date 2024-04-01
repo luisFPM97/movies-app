@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../app');
 let id;
 
-test('GET /actors debe retornar status 200', async () => {
+test('GET /actors debe retornar status 200 al obtener actores', async () => {
     const res = await request(app).get('/actors');
     expect(res.status).toBe(200);
     expect(res.body).toBeInstanceOf(Array);
@@ -38,7 +38,7 @@ test('PUT /actors/:id debe actualizar un actor por su id', async () => {
     expect(res.status).toBe(200);
     expect(res.body.firstName).toBe(body.firstName);
 });
-test('PUT /actors/:id con id incorrecto debe retornar 404 ', async () => {
+test('PUT /actors/:id actualizar actor con id incorrecto debe retornar 404 ', async () => {
     const res = await request(app).put('/actors/-1');
     expect(res.status).toBe(404);
 });

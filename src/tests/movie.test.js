@@ -5,7 +5,7 @@ const Director = require('../models/Director');
 const Genre = require('../models/Genre');
 let id;
 
-test('GET /movies debe retornar status 200', async () => {
+test('GET /movies debe retornar status 200al traer peliculas', async () => {
     const res = await request(app).get('/movies');
     expect(res.status).toBe(200);
     expect(res.body).toBeInstanceOf(Array);
@@ -54,7 +54,7 @@ test('POST /movies/:id/actors agrega los actores de la pelicula', async () => {
     expect(res.body).toBeInstanceOf(Array);
     expect(res.body.length).toBe(1);
 });
-test('POST /movies/:id/directors agraga los directores a la pelicula', async () => {
+test('POST /movies/:id/directors agrega los directores a la pelicula', async () => {
     const director = await Director.create({
         firstName:"James",
         lastName:"Gunn",

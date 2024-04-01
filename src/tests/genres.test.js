@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../app');
 let id;
 
-test('GET /genres debe retornar status 200', async () => {
+test('GET /genres debe retornar status 200 al obtener generos', async () => {
     const res = await request(app).get('/genres');
     expect(res.status).toBe(200);
     expect(res.body).toBeInstanceOf(Array);
@@ -23,7 +23,7 @@ test('GET /genres/:id debe traer el genero por su id', async () => {
     expect(res.status).toBe(200);
     expect(res.body).toBeDefined();
 });
-test('GET /genres/:id con id incorrecto debe retornar 404 ', async () => {
+test('GET /genres/:id traer genero con id incorrecto debe retornar 404 ', async () => {
     const res = await request(app).get('/genres/-1');
     expect(res.status).toBe(404);
 });
@@ -36,7 +36,7 @@ test('PUT /genres/:id debe actualizar el genero por su id', async () => {
     expect(res.body).toBeDefined();
     expect(res.body.name).toBe(body.name);
 });
-test('PUT /genres/:id con id incorrecto debe retornar 404 ', async () => {
+test('PUT /genres/:id actualizar con id incorrecto debe retornar 404 ', async () => {
     const res = await request(app).put('/genres/-1');
     expect(res.status).toBe(404);
 });

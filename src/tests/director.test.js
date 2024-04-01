@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../app');
 let id;
 
-test('GET /directors debe retornar status 200', async () => {
+test('GET /directors debe retornar status 200 al obtener directores', async () => {
     const res = await request(app).get('/directors');
     expect(res.status).toBe(200);
     expect(res.body).toBeInstanceOf(Array);
@@ -27,7 +27,7 @@ test('GET /directors/:id debe traer un director por su id', async () => {
     expect(res.status).toBe(200);
     expect(res.body).toBeDefined();
 });
-test('GET /directors/:id con id incorrecto debe retornar 404 ', async () => {
+test('GET /directors/:id retornar director con id incorrecto debe retornar 404 ', async () => {
     const res = await request(app).get('/directors/-1');
     expect(res.status).toBe(404);
 });
@@ -41,7 +41,7 @@ test('PUT /directors/:id debe actualizar un director por su id', async () => {
     expect(res.body).toBeDefined();
     expect(res.body.firstName).toBe(body.firstName);
 });
-test('PUT /directors/:id con id incorrecto debe retornar 404 ', async () => {
+test('PUT /directors/:id actualizar director con id incorrecto debe retornar 404 ', async () => {
     const res = await request(app).put('/directors/-1');
     expect(res.status).toBe(404);
 });
